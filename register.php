@@ -14,6 +14,10 @@
         username:<input type="text" name = "username" required = "required"/><br/>
         password:<input type="password" name = "password" required = "required"/><br/>
         <input type = "submit" value = "Register"/>
+
+
+
+        
     </form>
 </body>
 </html>
