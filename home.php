@@ -16,7 +16,12 @@
 <p> Welcome <?php Print "$user" ?></p>
     Today is:
     <?php
-        echo date('m-d-y');
+        echo date('Y-m-d');
+        Print '<form action = "chooseDate.php" method = "GET">';
+            Print 'Choose a date:';
+            Print '<input type = "date" name = "date" required = "required"/>';
+            Print '<input type = "submit" value = "Choose"/>';
+        Print '</form>'
     ?>
     <h2 align = "left">Today's activities:</h2>
     <table border = "2px">
