@@ -30,6 +30,7 @@
     Print '</br>';
     Print $eTime;
     $today = date('Y-m-d');
-    mysql_query("INSERT INTO tasks(userid,task,sTime,eTime,date) VALUES ('$userID', '$task', '$sTime', '$eTime', '$today')");
-    header("location:home.php");
+    $date = $_SESSION['date'];
+    mysql_query("INSERT INTO tasks(userid,task,sTime,eTime,date) VALUES ('$userID', '$task', '$sTime', '$eTime', '$date')");
+    header('location:home.php?date='.$date);
 ?>

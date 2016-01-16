@@ -13,17 +13,20 @@
 <head>
 </head>
 <body>
-<p> Welcome <?php Print "$user" ?></p>
-    Today is:
+<h2> Welcome <?php Print "$user" ?></h2>
+    <a href = "logout.php">Logout</a><br/><br/>
     <?php
-        echo date('Y-m-d');
-        Print '<form action = "chooseDate.php" method = "GET">';
+        Print '<form action = "home.php" method = "GET">';
+            Print '</br>';
             Print 'Choose a date:';
             Print '<input type = "date" name = "date" required = "required"/>';
             Print '<input type = "submit" value = "Choose"/>';
-        Print '</form>'
+        Print '</form>';
+        Print 'The date you have chosen is:  ';
+        $chosenDate = $_GET['date'];
+        Print $chosenDate;
     ?>
-    <h2 align = "left">Today's activities:</h2>
+    <h2 align = "left">Your activities for the chosen day:</h2>
     <table border = "2px">
         <tr>
             <th>Activity/Task</th>
@@ -39,10 +42,11 @@
             $userID = $row['id'];
             $tasks = mysql_query("Select * from tasks WHERE userid = '$userID'");
             $today = date('Y-m-d');
+            $date = $_GET['date'];
+            $_SESSION['date'] = $date;
+
             while($tasksRow = mysql_fetch_assoc($tasks)){
-
-                if($tasksRow['date'] == $today){
-
+                if($tasksRow['date'] == $date){
                     Print '<tr>';
                         Print '<td align = "center">'.$tasksRow['task']."</td>";
                         Print '<td align = "center">'.$tasksRow['sTime']."</td>";
@@ -52,7 +56,7 @@
                 }
             }
             Print '<tr>';
-                Print '<form action = "saveTask.php?id='.$userID. '" method = "POST" >';
+                Print '<form action = "saveTask.php?id='.$userID. '&date='. $date.'" method = "POST" >';
                 Print '<td align = "center"><input type = "text" name = "task" required = "required"/></td>';
                 Print '<td align = "center"><input type = "time" name = "sTime" required = "required"/></td>';
                 Print '<td align = "center"><input type = "time" name = "eTime" required = "required"/></td>';
@@ -65,7 +69,6 @@
         function deleteFunction(taskID){
             var r = confirm("Are you sure you want delete this task/activity?");
             if(r == true){
-
                 window.location.assign("delete.php?taskID=" + taskID);
             }
         }

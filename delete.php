@@ -17,5 +17,6 @@
     mysql_select_db("ecalendar") or die("Cannot connect to database");
     $taskID = $_GET['taskID'];
     mysql_query("DELETE FROM tasks WHERE id='$taskID'");
-    header("location:home.php");
+    $date = $_SESSION['date'];
+    header('location:home.php?date='.$date);
 ?>

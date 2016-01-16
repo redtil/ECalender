@@ -22,7 +22,8 @@
         }
         if(($username == $table_users) && ($password == $table_password)){
             $_SESSION['user'] = $username;
-            header("location: home.php");
+            $today = date('Y-m-d');
+            header('location: home.php?date='.$today);
         }
         else{
             Print '<script>alert("Incorrect password");</script>';
