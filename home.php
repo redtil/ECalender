@@ -34,6 +34,7 @@
             <th>End Time</th>
             <th>Update</th>
         </tr>
+
         <?php
             mysql_connect("localhost","root","") or die(mysql_error());
             mysql_select_db("ecalendar") or die("Cannot connect to database");
