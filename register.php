@@ -16,8 +16,6 @@
         <input type = "submit" value = "Register"/>
 
 
-
-
     </form>
 </body>
 </html>
